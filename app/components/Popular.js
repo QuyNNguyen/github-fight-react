@@ -8,7 +8,13 @@ export default class Popular extends React.Component{
         selectedLanguage = "All"
     }
   }
-  
+
+  updateLanguage(language){
+    this.setState({
+      selectedLanguage = language
+    })
+  }
+
   render(){
 
     const languages = ["All", "Javascript", "Ruby", "Java"];
