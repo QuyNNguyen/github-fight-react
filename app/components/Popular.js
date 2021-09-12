@@ -2,6 +2,30 @@ import React from "react";
 import Proptypes from "prop-types";
 import { fetchPopularRepos } from "../utils/api";
 
+function ReposGrid({repos}) {
+  return (
+    <ul className="grid space-around">
+      {
+        repos.map((repo, index) => {
+        const {name, owner, html_url, stargazers_count, forks, open_issues } = repo
+        const {login, avatar_url} = owner
+
+        return (
+          <li key={html_url} className="repo bg-light">
+            <h4 className="header-lg center-text">#{index + 1}</h4>
+            <img
+              className="avatar"
+              src={avatar_url}
+              alt={`Avatar for ${login}`}
+            />
+          </li>
+        ); 
+       }
+      )}
+    </ul>
+  )
+}
+
 function LanguageNav(props) {
   const languages = ["All", "Python", "Javascript", "PHP"];
   return (
@@ -55,11 +79,11 @@ export default class Popular extends React.Component {
     if (!this.state.repos[lang]) {
       fetchPopularRepos(lang)
         .then((data) => {
-          this.setState(({repos}) => ({
+          this.setState((repos) => ({
             repos: {
               ...repos,
               [lang]: data,
-            }
+            },
           }));
         })
         .catch((error) => {
@@ -86,12 +110,16 @@ export default class Popular extends React.Component {
           onUpdateLanguage={this.updateLanguage}
         />
 
-        {this.isLoading() && <p>LOADING</p>}
+        {/* {this.isLoading() && <p>LOADING</p>}
 
         {error && <p>{error}</p>}
         {repos[selectedLanguage] && (
           <pre>{JSON.stringify(repos[selectedLanguage], null, 2)}</pre>
-        )}
+        )} */}
+
+        {
+          repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]}/>
+        }
       </React.Fragment>
     );
   }
