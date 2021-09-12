@@ -1,2 +1,2 @@
 # github-react-project
-github battle page using react. tuts from ui.dev project
+github battle page using react. from ui.dev project
