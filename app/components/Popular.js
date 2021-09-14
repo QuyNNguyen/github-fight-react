@@ -149,13 +149,6 @@ export default class Popular extends React.Component {
           onUpdateLanguage={this.updateLanguage}
         />
 
-        {/* {this.isLoading() && <p>LOADING</p>}
-
-        {error && <p>{error}</p>}
-        {repos[selectedLanguage] && (
-          <pre>{JSON.stringify(repos[selectedLanguage], null, 2)}</pre>
-        )} */}
-
         {
           repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]}/>
         }
