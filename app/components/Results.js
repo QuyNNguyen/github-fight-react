@@ -5,6 +5,8 @@ import Card from "./Card.js";
 import Loading from "./Loading";
 import Proptypes from "prop-types";
 import Tooltips from "./Tooltips";
+import queryString from 'query-string';
+import {Link} from "react-router-dom"
 
 function ProfileList ({profile}){
   return (
@@ -51,7 +53,7 @@ export default class Results extends React.Component {
     };
   }
   componentDidMount() {
-    const { playerOne, playerTwo, onReset } = this.props;
+    const { playerOne, playerTwo} = queryString.parse(this.props.location.search);
 
     battle([playerOne, playerTwo])
       .then((players) => {
@@ -103,10 +105,10 @@ export default class Results extends React.Component {
             <ProfileList profile={loser.profile} />
           </Card>
         </div>
-        <button 
+        <Link 
         className="btn dark-btn btn-space"
-        onClick={this.props.onReset}
-        >Reset</button>
+        to="/battle"
+        >Reset</Link>
       </div>
     );
   }

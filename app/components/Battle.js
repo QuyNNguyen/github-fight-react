@@ -9,6 +9,7 @@ import {
 import { render } from "react-dom";
 import Results from "./Results.js";
 import { ThemeConsumer } from "../contexts/theme.js";
+import {Link} from "react-router-dom";
 
 
 function Instruction(){
@@ -169,21 +170,8 @@ export default class Battle extends React.Component {
  }
  
   render(){
-    const { playerOne, playerTwo, battle } = this.state;
+    const { playerOne, playerTwo } = this.state;
 
-    if(battle ===true){
-      return (
-        <Results
-          playerOne={playerOne}
-          playerTwo={playerTwo}
-          onReset={()=>this.setState({
-            playerOne: null,
-            playerTwo: null,
-            battle: false,
-          })}
-        />
-      );
-    }
    return (
      <React.Fragment>
        <Instruction />
@@ -217,12 +205,15 @@ export default class Battle extends React.Component {
            }
 
            {playerOne && playerTwo &&(
-             <button 
+             <Link
              className='btn dark-btn btn-space'
-             onClick={()=> this.setState({battle:true})}
+             to={{
+               pathname: `/battle/results`,
+               search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`
+             }}
              >
                Battle
-              </button>
+              </Link>
            )}
          </div>
        </div>
