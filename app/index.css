@@ -26,9 +26,8 @@ li {
   color: #DADADA;
   background: #1c2022;
   min-height: 100%;
-
-
 }
+
 .flex-center {
   display: flex;
   justify-content: center;

@@ -37,7 +37,7 @@ function Instruction(){
             </li>
             <li>
               <h3 className="header-sm">See the winners</h3>
-              {console.log(`bg-${theme}`)}
+              
               <FaTrophy
                 className={`bg-${theme}`}
                 color="rgb(255, 215, 0)"
