@@ -1,2 +1,2 @@
 # github-react-project
-github battle game page using react. 
+github fighting game to compare the best githubber
